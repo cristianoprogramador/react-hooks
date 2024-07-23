@@ -108,7 +108,7 @@ body.background {
   color: #ffffff;
 }
 
-.cart-item {
+.cart-list {
   background-color: #f9f9f9;
   padding: 16px;
   border-radius: 4px;
@@ -117,9 +117,18 @@ body.background {
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: #ffff;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   margin-top: 20px;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
 }
 
 .cart-item-button-decrease {
@@ -169,9 +178,12 @@ body.background {
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background: #ffff;
   flex-direction: row;
   width: 100%;
   text-align: center;
+}
+
+.empty-cart p {
+  margin: 0;
 }

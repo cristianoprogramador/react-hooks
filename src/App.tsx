@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ReactPage from "./pages/ReactPage";
 import VanillaPage from "./pages/VanillaPage";
@@ -11,7 +11,8 @@ const App: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/react" element={<ReactPage />} />
         <Route path="/vanilla" element={<VanillaPage />} />
-      </Routes>
+        <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
     </BrowserRouter>
   );
 };
