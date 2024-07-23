@@ -83,20 +83,29 @@ function renderCart() {
   cartElement.innerHTML = '<h2 class="subtitle">Shopping Cart</h2>';
   const ul = document.createElement('ul');
   ul.className = 'cart-list';
-  cart.forEach(item => {
-    const li = document.createElement('li');
-    li.className = 'cart-item';
-    li.innerHTML = `
-      <div>
-        <div class="cart-item-name">${item.product.name} - $${item.product.price.toFixed(2)} x ${item.quantity}</div>
-      </div>
-      <div class="cart-item-buttons">
-        <button onclick="decreaseQuantity(${item.product.id})" class="decrease-quantity">Decrease</button>
-        <button onclick="removeFromCart(${item.product.id})" class="remove-from-cart">Remove</button>
-      </div>
-    `;
-    ul.appendChild(li);
-  });
+
+  if (cart.length === 0) {
+    ul.innerHTML = '<li class="empty-cart"><p>Your cart is empty</p></li>';
+  } else {
+    cart.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'cart-item';
+      li.innerHTML = `
+        <div>
+          <div>
+            ${item.product.name}
+          </div>
+          <div class="cart-item-name">$${item.product.price.toFixed(2)} x ${item.quantity}</div>
+        </div>
+        <div class="cart-item-buttons">
+          <button class="cart-item-button-decrease" onclick="decreaseQuantity(${item.product.id})">Decrease</button>
+          <button class="cart-item-button-remove" onclick="removeFromCart(${item.product.id})">Remove</button>
+        </div>
+      `;
+      ul.appendChild(li);
+    });
+  }
+
   cartElement.appendChild(ul);
 
   if (cart.length > 0) {
@@ -110,9 +119,11 @@ function renderCart() {
   }
 }
 
+
 document.addEventListener('DOMContentLoaded', () => {
   fetchProducts().then(data => {
     products = data;
     renderProducts();
+    renderCart();
   });
 });
