@@ -11,7 +11,7 @@ function fetchProducts() {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(mockProducts);
-    }, 1);
+    }, 1000);
   });
 }
 
@@ -121,6 +121,8 @@ function renderCart() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  renderCart();
   fetchProducts().then(data => {
     products = data;
     renderProducts();
